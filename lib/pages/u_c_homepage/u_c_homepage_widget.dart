@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -85,7 +88,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                       size: 24.0,
                     ),
                     onPressed: () {
-                      print('IconButton pressed ...');
+                      //
                     },
                   ),
                 ],
@@ -127,8 +130,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                         borderWidth: 2.0,
                         borderRadius: 8.0,
                         elevation: 0.0,
-                        buttonMargin:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        buttonMargin: const EdgeInsetsDirectional.fromSTEB(
+                            8.0, 0.0, 8.0, 0.0),
                         padding: const EdgeInsets.all(4.0),
                         tabs: const [
                           Tab(
@@ -175,8 +178,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                     scrollDirection: Axis.vertical,
                                     children: [
                                       Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(
+                                            0.0, 0.0),
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Text(
@@ -271,8 +274,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed(
-                                                        'EditUSUser');
+                                                    Get.toNamed(
+                                                        '/coordinador/editSoporte');
                                                   },
                                                   child: Icon(
                                                     Icons.edit,
@@ -308,8 +311,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                     scrollDirection: Axis.vertical,
                                     children: [
                                       Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(
+                                            0.0, 0.0),
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Text(
@@ -385,8 +388,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed(
-                                                        'EditClient');
+                                                    Get.toNamed(
+                                                        '/coordinador/editClient');
                                                   },
                                                   child: Icon(
                                                     Icons.edit,
@@ -422,8 +425,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                     scrollDirection: Axis.vertical,
                                     children: [
                                       Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(
+                                            0.0, 0.0),
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Text(
@@ -515,8 +518,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed(
-                                                        'ReportPage');
+                                                    Get.toNamed('/coordinador/report');
                                                   },
                                                   child: Icon(
                                                     Icons.rate_review,

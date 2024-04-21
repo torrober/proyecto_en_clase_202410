@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/controllers/login_controller.dart';
+import 'package:proyecto_en_clase201410/index.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
-import 'flutter_flow/flutter_flow_util.dart';
-import 'flutter_flow/nav/nav.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  GoRouter.optionURLReflectsImperativeAPIs = true;
+  Get.put(LoginController());
   usePathUrlStrategy();
 
   await FlutterFlowTheme.initialize();
@@ -30,17 +31,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
-  late AppStateNotifier _appStateNotifier;
-  late GoRouter _router;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _appStateNotifier = AppStateNotifier.instance;
-    _router = createRouter(_appStateNotifier);
-  }
-
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
         FlutterFlowTheme.saveThemeMode(mode);
@@ -48,7 +38,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return GetMaterialApp(
       title: 'ProyectoEnClase201410',
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -65,7 +55,16 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: false,
       ),
       themeMode: _themeMode,
-      routerConfig: _router,
+      initialRoute: '/login',
+      getPages: [
+        GetPage(name: '/login', page: () => const HomePageWidget()),
+        GetPage(name: '/coordinador', page: () => const UCHomepageWidget()),
+        GetPage(name: '/soporte', page: () => const HomepageUSWidget()),
+        GetPage(name: '/soporte/createReport', page: () => const CreateReportWidget()),
+        GetPage(name: '/coordinador/editClient', page: () => const EditClientWidget()),
+        GetPage(name: '/coordinador/editSoporte', page: () => const EditUSUserWidget()),
+        GetPage(name: '/coordinador/report', page: () => const ReportPageWidget()),
+      ],
     );
   }
 }

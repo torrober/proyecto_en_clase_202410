@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -271,7 +273,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                context.pushNamed('UCHomepage');
+                                // Validar el usuario y la contraseña
+                                if (_model.textController1!.text == 'a@a.com' &&
+                                    _model.textController2!.text == '123') {
+                                  // Si la validación es exitosa, redirigir al usuario a la ruta "/soporte"
+                                  Get.offNamed('/coordinador');
+                                } else if (_model.textController1!.text =='b@b.com' &&
+                                    _model.textController2!.text == '123') {
+                                      Get.offNamed('/soporte');
+                                } else {
+                                  // Si la validación falla, mostrar un mensaje de error o tomar otra acción
+                                  // Aquí puedes mostrar un SnackBar con un mensaje de error
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'Usuario o contraseña incorrectos')),
+                                  );
+                                }
                               },
                               text: 'Login',
                               options: FFButtonOptions(
@@ -279,8 +297,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall

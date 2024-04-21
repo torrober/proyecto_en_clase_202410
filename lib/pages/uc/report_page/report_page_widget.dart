@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -57,7 +59,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
               size: 24.0,
             ),
             onPressed: () {
-              print('IconButton pressed ...');
+              Get.back();
             },
           ),
           title: Align(
