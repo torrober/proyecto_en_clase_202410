@@ -88,7 +88,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                       size: 24.0,
                     ),
                     onPressed: () {
-                      //
+                      Get.offNamed('/login');
                     },
                   ),
                 ],
