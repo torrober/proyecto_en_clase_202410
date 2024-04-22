@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -36,9 +35,7 @@ class _HomepageUSWidgetState extends State<HomepageUSWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => Get.toNamed('/soporte/createReport'),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -92,7 +89,7 @@ class _HomepageUSWidgetState extends State<HomepageUSWidget> {
                       size: 24.0,
                     ),
                     onPressed: () {
-                      //
+                      Get.offNamed('/login');
                     },
                   ),
                 ],
@@ -105,68 +102,71 @@ class _HomepageUSWidgetState extends State<HomepageUSWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    'https://images.unsplash.com/photo-1678496479367-28592d3620a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMHx8Y2FsbWluZyUyMG5hdHVyZXxlbnwwfHx8fDE3MTM1OTc0ODd8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                    width: double.infinity,
-                    height: 300.0,
-                    fit: BoxFit.cover,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      'https://images.unsplash.com/photo-1678496479367-28592d3620a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMHx8Y2FsbWluZyUyMG5hdHVyZXxlbnwwfHx8fDE3MTM1OTc0ODd8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                      width: double.infinity,
+                      height: 300.0,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                'Welcome, Asuka!',
-                style: FlutterFlowTheme.of(context).headlineLarge.override(
-                      fontFamily: 'Outfit',
-                      letterSpacing: 0.0,
-                    ),
-              ),
-              Text(
-                'Click on the plus button, to create a new report',
-                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      fontFamily: 'Outfit',
-                      letterSpacing: 0.0,
-                    ),
-              ),
-              Card(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                elevation: 4.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Quote of the day',
-                      style:
-                          FlutterFlowTheme.of(context).headlineLarge.override(
-                                fontFamily: 'Outfit',
-                                letterSpacing: 0.0,
-                              ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'A life is not important except in the impact it has on other lives.\n\nJackie Robinson',
-                        style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                              fontStyle: FontStyle.italic,
-                            ),
+                Text(
+                  'Welcome, Asuka!',
+                  style: FlutterFlowTheme.of(context).headlineLarge.override(
+                        fontFamily: 'Outfit',
+                        letterSpacing: 0.0,
                       ),
-                    ),
-                  ],
                 ),
-              ),
-            ].divide(const SizedBox(height: 20.0)),
+                Text(
+                  'Click on the plus button, to create a new report',
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Outfit',
+                        letterSpacing: 0.0,
+                      ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Quote of the day',
+                        style:
+                            FlutterFlowTheme.of(context).headlineLarge.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          'A life is not important except in the impact it has on other lives.\n\nJackie Robinson',
+                          style:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ].divide(const SizedBox(height: 20.0)),
+            ),
           ),
         ),
       ),

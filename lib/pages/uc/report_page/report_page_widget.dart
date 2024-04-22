@@ -105,143 +105,155 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                         ),
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Icon(
-                                          Icons.assignment,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 72.0,
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Reporte',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleLarge
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                          Text(
-                                            '16/07/2020',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        '1/5',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      Container(
-                                        width: 160.0,
-                                        height: 50.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          shape: BoxShape.rectangle,
-                                          border: Border.all(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Align(
+                                  alignment:
+                                      const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Icon(
+                                            Icons.assignment,
                                             color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 2.0,
+                                                .secondaryText,
+                                            size: 72.0,
                                           ),
                                         ),
-                                        child: FlutterFlowCountController(
-                                          decrementIconBuilder: (enabled) =>
-                                              FaIcon(
-                                            FontAwesomeIcons.minus,
-                                            color: enabled
-                                                ? FlutterFlowTheme.of(context)
-                                                    .secondaryText
-                                                : FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                            size: 20.0,
-                                          ),
-                                          incrementIconBuilder: (enabled) =>
-                                              FaIcon(
-                                            FontAwesomeIcons.plus,
-                                            color: enabled
-                                                ? FlutterFlowTheme.of(context)
-                                                    .primary
-                                                : FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                            size: 20.0,
-                                          ),
-                                          countBuilder: (count) => Text(
-                                            count.toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleLarge
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                          count: _model.countControllerValue ??=
-                                              1,
-                                          updateCount: (count) => setState(() =>
-                                              _model.countControllerValue =
-                                                  count),
-                                          stepSize: 1,
-                                          minimum: 1,
-                                          maximum: 5,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Calificación',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              letterSpacing: 0.0,
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Reporte',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                      ),
-                                    ].divide(const SizedBox(width: 40.0)),
+                                            Text(
+                                              '16/07/2020',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Align(
+                                  alignment:
+                                      const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          '1/5',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Container(
+                                          width: 160.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            shape: BoxShape.rectangle,
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: FlutterFlowCountController(
+                                            decrementIconBuilder: (enabled) =>
+                                                FaIcon(
+                                              FontAwesomeIcons.minus,
+                                              color: enabled
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .secondaryText
+                                                  : FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              size: 20.0,
+                                            ),
+                                            incrementIconBuilder: (enabled) =>
+                                                FaIcon(
+                                              FontAwesomeIcons.plus,
+                                              color: enabled
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              size: 20.0,
+                                            ),
+                                            countBuilder: (count) => Text(
+                                              count.toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                            count: _model
+                                                .countControllerValue ??= 1,
+                                            updateCount: (count) => setState(
+                                                () => _model
+                                                        .countControllerValue =
+                                                    count),
+                                            stepSize: 1,
+                                            minimum: 1,
+                                            maximum: 5,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Calificación',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ].divide(const SizedBox(width: 40.0)),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -292,7 +304,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                       padding: const EdgeInsets.all(10.0),
                       child: FFButtonWidget(
                         onPressed: () {
-                          print('Button pressed ...');
+                          //print('Button pressed ...');
                         },
                         text: 'Guardar',
                         options: FFButtonOptions(
