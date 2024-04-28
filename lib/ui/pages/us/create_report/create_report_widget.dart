@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/domain/models/report.dart';
 
+import '../../../controllers/us_controller.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -21,6 +23,7 @@ class CreateReportWidget extends StatefulWidget {
 
 class _CreateReportWidgetState extends State<CreateReportWidget> {
   late CreateReportModel _model;
+  final controllerDescription = TextEditingController();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -42,8 +45,12 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
 
   @override
   Widget build(BuildContext context) {
+    USController usController = Get.find();
+    List<String> listaClientes =
+        usController.clients.map((cliente) => cliente.name).toList();
+
     return GestureDetector(
-      onTap: () => Get.back(),
+      onTap: () => (),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -91,7 +98,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                             FlutterFlowDropDown<String>(
                               controller: _model.dropDownValueController ??=
                                   FormFieldController<String>(null),
-                              options: const ['Option 1'],
+                              options: listaClientes,
                               onChanged: (val) =>
                                   setState(() => _model.dropDownValue = val),
                               width: 300.0,
@@ -240,8 +247,9 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
@@ -326,7 +334,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                               child: SizedBox(
                                 width: MediaQuery.sizeOf(context).width * 0.9,
                                 child: TextFormField(
-                                  controller: _model.textController,
+                                  controller: controllerDescription,
                                   focusNode: _model.textFieldFocusNode,
                                   autofocus: true,
                                   obscureText: false,
@@ -389,8 +397,18 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                               ),
                             ),
                             FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                await usController.addReport(Report(
+                                  id: (_model.countControllerValue ?? 0) + 5,
+                                  score: 0,
+                                  description: controllerDescription.text,
+                                  nameClient: _model.dropDownValue ??
+                                      "", // Utilizar -1 como valor predeterminado
+                                  horaInicio:
+                                      _model.datePicked?.toIso8601String() ??
+                                          "",
+                                  duracion: _model.countControllerValue ?? 0,
+                                ));
                               },
                               text: 'Save',
                               options: FFButtonOptions(
@@ -398,8 +416,9 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall

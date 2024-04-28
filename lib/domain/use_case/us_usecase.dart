@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
+import 'package:proyecto_en_clase201410/domain/models/client.dart';
 
 import '../models/report.dart';
 import '../repositories/repository.dart';
@@ -8,6 +9,11 @@ class USUseCase {
   final Repository _repository = Get.find();
 
   USUseCase();
+
+  Future<List<Client>> getClients() async {
+    logInfo("Getting clients from UseCase");
+    return await _repository.getClients();
+  }
 
   Future<List<Report>> getReports() async {
     logInfo("Getting users from UseCase");

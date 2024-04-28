@@ -140,7 +140,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Reporte a cliente #${reporte.idClient.toString()}',
+                                              'Reporte a cliente #${reporte.nameClient}',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .titleLarge
@@ -150,7 +150,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                                       ),
                                             ),
                                             Text(
-                                              reporte.horaInicio,
+                                              "A VER",
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -313,7 +313,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                             id: reporte.id,
                             score: score,
                             description: reporte.description,
-                            idClient: reporte.idClient,
+                            nameClient: reporte.nameClient,
                             horaInicio: reporte.horaInicio,
                             duracion: reporte.duracion,
                           ));

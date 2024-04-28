@@ -3,7 +3,7 @@ class Report {
     this.id,
     required this.score,
     required this.description,
-    required this.idClient,
+    required this.nameClient,
     required this.horaInicio,
     required this.duracion,
   });
@@ -11,7 +11,7 @@ class Report {
   int? id;
   String description;
   int score;
-  int idClient; // Cambiar el tipo de String a int
+  String nameClient; // Cambiar el tipo de String a int
   String horaInicio;
   int duracion; // Cambiar el tipo de String a int
 
@@ -19,7 +19,7 @@ class Report {
         id: json["id"],
         score: json["Score"] ?? 0, // Manejar el caso de valor nulo
         description: json["description"] ?? "somedescription",
-        idClient: json["idClient"] ?? 0, // Manejar el caso de valor nulo
+        nameClient: json["nameClient"] ?? "someName", // Manejar el caso de valor nulo
         horaInicio: json["horaInicio"] ?? "somehora",
         duracion: json["duracion"] ?? 0, // Manejar el caso de valor nulo
       );
@@ -28,7 +28,7 @@ class Report {
         "id": id ?? 0,
         "score": score,
         "description": description,
-        "idClient": idClient,
+        "nameClient": nameClient,
         "horaInicio": horaInicio,
         "duracion": duracion,
       };

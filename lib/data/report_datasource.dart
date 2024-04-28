@@ -4,7 +4,7 @@ import '../../../domain/models/report.dart';
 import 'package:http/http.dart' as http;
 
 class ReportsDataSource {
-  final String apiKey = 'Wg2znq';
+  final String apiKey = 'qrhARc';
 
   Future<List<Report>> getReports() async {
     List<Report> reports = [];
