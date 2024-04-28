@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/domain/models/report.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
 
 import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -19,7 +21,7 @@ class ReportPageWidget extends StatefulWidget {
 
 class _ReportPageWidgetState extends State<ReportPageWidget> {
   late ReportPageModel _model;
-
+  Report reporte = Get.arguments as Report;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -37,6 +39,8 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    UCController ucController = Get.find();
+    int _count = reporte.score ?? 0;
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -136,7 +140,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Reporte',
+                                              'Reporte a cliente #${reporte.idClient.toString()}',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .titleLarge
@@ -146,7 +150,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                                       ),
                                             ),
                                             Text(
-                                              '16/07/2020',
+                                              reporte.horaInicio,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -228,14 +232,13 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
-                                            count: _model
-                                                .countControllerValue ??= 1,
+                                            count: reporte.score,
                                             updateCount: (count) => setState(
                                                 () => _model
                                                         .countControllerValue =
-                                                    count),
+                                                    reporte.score = count),
                                             stepSize: 1,
-                                            minimum: 1,
+                                            minimum: 0,
                                             maximum: 5,
                                           ),
                                         ),
@@ -277,7 +280,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                               Align(
                                 alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Text(
-                                  'Reporte',
+                                  'Reporte # ${reporte.id.toString()}',
                                   style: FlutterFlowTheme.of(context)
                                       .titleLarge
                                       .override(
@@ -287,7 +290,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                 ),
                               ),
                               Text(
-                                'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas \"Letraset\", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.',
+                                reporte.description,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -303,8 +306,17 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          //print('Button pressed ...');
+                        onPressed: () async {
+                          int score = _model
+                              .countControllerValue ?? 0; // Convertir a int, o 0 si no se puede convertir
+                          await ucController.updateReport(Report(
+                            id: reporte.id,
+                            score: score,
+                            description: reporte.description,
+                            idClient: reporte.idClient,
+                            horaInicio: reporte.horaInicio,
+                            duracion: reporte.duracion,
+                          ));
                         },
                         text: 'Guardar',
                         options: FFButtonOptions(

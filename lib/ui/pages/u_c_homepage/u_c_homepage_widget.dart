@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/domain/models/client.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
 
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -18,6 +20,7 @@ class UCHomepageWidget extends StatefulWidget {
 class _UCHomepageWidgetState extends State<UCHomepageWidget>
     with TickerProviderStateMixin {
   late UCHomepageModel _model;
+  UCController ucController = Get.find();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -171,31 +174,15 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                     maxWidth: 1200.0,
                                   ),
                                   decoration: const BoxDecoration(),
-                                  child: ListView(
+                                  child: ListView.builder(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
-                                    children: [
-                                      Align(
-                                        alignment: const AlignmentDirectional(
-                                            0.0, 0.0),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(
-                                            'Current Support Staff',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleLarge
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
+                                    itemCount: ucController.users.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      var usuario = ucController.users[index];
+                                      return Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Card(
                                           clipBehavior:
@@ -230,7 +217,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Asuka Langley',
+                                                      usuario
+                                                          .name, // Mostrar el nombre del usuario
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -246,7 +234,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                               ),
                                                     ),
                                                     Text(
-                                                      'Support (US)',
+                                                      usuario
+                                                          .emailAddress, // Mostrar el correo electrónico del usuario
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -273,8 +262,9 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    // Aquí puedes definir la acción al hacer tap en el ícono de editar
                                                     Get.toNamed(
-                                                        '/coordinador/editSoporte');
+                                                        '/coordinador/editSoporte', arguments: usuario);
                                                   },
                                                   child: Icon(
                                                     Icons.edit,
@@ -288,8 +278,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
@@ -304,28 +294,17 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                     maxWidth: 1200.0,
                                   ),
                                   decoration: const BoxDecoration(),
-                                  child: ListView(
+                                  child: ListView.builder(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
-                                    children: [
-                                      Align(
-                                        alignment: const AlignmentDirectional(
-                                            0.0, 0.0),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(
-                                            'Current Clients',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleLarge
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
+                                    itemCount: ucController.clients
+                                        .length, // Asegúrate de tener una lista de clientes válida
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      Client cliente = ucController.clients[
+                                          index]; // Suponiendo que tuListaDeClientes es una lista de objetos Client
+                                      return Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Card(
                                           clipBehavior:
@@ -351,7 +330,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
-                                                  size: 72.0,
+                                                  size: 72,
                                                 ),
                                                 Column(
                                                   mainAxisSize:
@@ -360,7 +339,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Gendo Ikari',
+                                                      cliente
+                                                          .name, // Mostrar el nombre del cliente
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -387,8 +367,9 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    // Aquí puedes definir la acción al hacer tap en el ícono de editar
                                                     Get.toNamed(
-                                                        '/coordinador/editClient');
+                                                        '/coordinador/editClient', arguments: cliente);
                                                   },
                                                   child: Icon(
                                                     Icons.edit,
@@ -402,8 +383,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
@@ -418,28 +399,17 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                     maxWidth: 1200.0,
                                   ),
                                   decoration: const BoxDecoration(),
-                                  child: ListView(
+                                  child: ListView.builder(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
-                                    children: [
-                                      Align(
-                                        alignment: const AlignmentDirectional(
-                                            0.0, 0.0),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(
-                                            'Latest reports',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleLarge
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
+                                    itemCount: ucController.reports
+                                        .length, // Asegúrate de tener una lista de reportes válida
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      var reporte = ucController.reports[
+                                          index]; // Suponiendo que tuListaDeReportes es una lista de objetos Report
+                                      return Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Card(
                                           clipBehavior:
@@ -474,7 +444,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Report #1',
+                                                      'Report #${reporte.id}', // Mostrar el ID del reporte
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -490,7 +460,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                               ),
                                                     ),
                                                     Text(
-                                                      '16/07/2020',
+                                                      reporte
+                                                          .horaInicio, // Mostrar la fecha de inicio del reporte
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -517,7 +488,9 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    Get.toNamed('/coordinador/report');
+                                                    // Aquí puedes definir la acción al hacer tap en el ícono de editar
+                                                    Get.toNamed(
+                                                        '/coordinador/report',arguments: reporte);
                                                   },
                                                   child: Icon(
                                                     Icons.rate_review,
@@ -531,8 +504,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      );
+                                    },
                                   ),
                                 ),
                               ],

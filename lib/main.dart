@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: depend_on_referenced_packages
-import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:get/get.dart';
-import 'package:proyecto_en_clase201410/controllers/login_controller.dart';
+import 'package:proyecto_en_clase201410/domain/repositories/repository.dart';
+import 'package:proyecto_en_clase201410/domain/use_case/uc_usecase.dart';
+import 'package:proyecto_en_clase201410/domain/use_case/us_usecase.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/login_controller.dart';
 import 'package:proyecto_en_clase201410/index.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'ui/controllers/us_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Get.put(Repository());
+  Get.put(UCUseCase());
+  Get.put(USUseCase());
   Get.put(LoginController());
-  usePathUrlStrategy();
-
+  Get.put(USController());
+  Get.put(UCController());
   await FlutterFlowTheme.initialize();
 
   runApp(const MyApp());
@@ -61,10 +68,17 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/login', page: () => const HomePageWidget()),
         GetPage(name: '/coordinador', page: () => const UCHomepageWidget()),
         GetPage(name: '/soporte', page: () => const HomepageUSWidget()),
-        GetPage(name: '/soporte/createReport', page: () => const CreateReportWidget()),
-        GetPage(name: '/coordinador/editClient', page: () => const EditClientWidget()),
-        GetPage(name: '/coordinador/editSoporte', page: () => const EditUSUserWidget()),
-        GetPage(name: '/coordinador/report', page: () => const ReportPageWidget()),
+        GetPage(
+            name: '/soporte/createReport',
+            page: () => const CreateReportWidget()),
+        GetPage(
+            name: '/coordinador/editClient',
+            page: () => const EditClientWidget()),
+        GetPage(
+            name: '/coordinador/editSoporte',
+            page: () => const EditUSUserWidget()),
+        GetPage(
+            name: '/coordinador/report', page: () => const ReportPageWidget()),
       ],
     );
   }

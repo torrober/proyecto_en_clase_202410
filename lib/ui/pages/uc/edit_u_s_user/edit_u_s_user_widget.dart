@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../../../domain/models/us.dart';
+import '../../../controllers/uc_controller.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -17,6 +19,11 @@ class EditUSUserWidget extends StatefulWidget {
 
 class _EditUSUserWidgetState extends State<EditUSUserWidget> {
   late EditUSUserModel _model;
+  User user = Get.arguments as User;
+  final controllerId = TextEditingController();
+  final controllerName = TextEditingController();
+  final controllerEmail = TextEditingController();
+  final controllerPassword = TextEditingController();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -47,6 +54,12 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
 
   @override
   Widget build(BuildContext context) {
+    UCController ucController = Get.find();
+    controllerId.text = user.id.toString();
+    controllerName.text = user.name;
+    controllerEmail.text = user.email;
+    controllerPassword.text = user.password;
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -145,7 +158,7 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
                                             ),
                                       ),
                                       Text(
-                                        'Asuka Langley',
+                                        user.firstName,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -182,7 +195,7 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: _model.textController1,
+                                      controller: controllerId,
                                       focusNode: _model.textFieldFocusNode1,
                                       autofocus: true,
                                       obscureText: false,
@@ -253,7 +266,7 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: _model.textController2,
+                                      controller: controllerName,
                                       focusNode: _model.textFieldFocusNode2,
                                       autofocus: true,
                                       obscureText: false,
@@ -324,7 +337,7 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: _model.textController3,
+                                      controller: controllerEmail,
                                       focusNode: _model.textFieldFocusNode3,
                                       autofocus: true,
                                       obscureText: false,
@@ -395,7 +408,7 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: _model.textController4,
+                                      controller: controllerPassword,
                                       focusNode: _model.textFieldFocusNode4,
                                       autofocus: true,
                                       obscureText: !_model.passwordVisibility,
@@ -478,8 +491,16 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
                                     ),
                                   ),
                                   FFButtonWidget(
-                                    onPressed: () {
-                                      //print('Button pressed ...');
+                                    onPressed: () async {
+                                      int userId = int.tryParse(
+                                              controllerId.text) ??
+                                          0; // Convertir a int, o 0 si no se puede convertir
+                                      await ucController.updateUser(User(
+                                        id: userId,
+                                        firstName: controllerName.text,
+                                        email: controllerEmail.text,
+                                        password: controllerPassword.text,
+                                      ));
                                     },
                                     text: 'Edit',
                                     options: FFButtonOptions(

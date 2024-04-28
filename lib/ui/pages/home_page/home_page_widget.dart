@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+//import 'package:proyecto_en_clase201410/controllers/login_controller.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,7 +17,8 @@ class HomePageWidget extends StatefulWidget {
 
 class _HomePageWidgetState extends State<HomePageWidget> {
   late HomePageModel _model;
-
+  final controllerEmail = TextEditingController();
+  final controllerPassword = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -40,6 +42,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    //LoginController myController = Get.find();
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -131,7 +134,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 10.0, 8.0, 10.0),
                                 child: TextFormField(
-                                  controller: _model.textController1,
+                                  controller: controllerEmail,
                                   focusNode: _model.textFieldFocusNode1,
                                   autofocus: true,
                                   obscureText: false,
@@ -199,7 +202,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 10.0, 8.0, 10.0),
                                 child: TextFormField(
-                                  controller: _model.textController2,
+                                  controller: controllerPassword,
                                   focusNode: _model.textFieldFocusNode2,
                                   autofocus: true,
                                   obscureText: !_model.passwordVisibility,
@@ -279,14 +282,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FFButtonWidget(
                                 onPressed: () async {
                                   // Validar el usuario y la contraseña
-                                  if (_model.textController1!.text ==
+                                  if (controllerEmail.text ==
                                           'a@a.com' &&
-                                      _model.textController2!.text == '123') {
+                                      controllerPassword.text == '123') {
                                     // Si la validación es exitosa, redirigir al usuario a la ruta "/soporte"
                                     Get.offNamed('/coordinador');
-                                  } else if (_model.textController1!.text ==
+                                  } else if (controllerEmail.text ==
                                           'b@b.com' &&
-                                      _model.textController2!.text == '123') {
+                                      controllerPassword.text == '123') {
                                     Get.offNamed('/soporte');
                                   } else {
                                     // Si la validación falla, mostrar un mensaje de error o tomar otra acción

@@ -111,7 +111,7 @@
     },
     {
       "name": "flutter_cache_manager",
-      "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_cache_manager-3.3.1",
+      "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_cache_manager-3.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -165,7 +165,7 @@
     },
     {
       "name": "go_router",
-      "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/go_router-13.2.4",
+      "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/go_router-14.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -234,6 +234,12 @@
       "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "loggy",
+      "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/loggy-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "matcher",
@@ -561,7 +567,7 @@
     },
     {
       "name": "win32",
-      "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.4.0",
+      "rootUri": "file:///C:/Users/Jeffrey%20Felix/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -578,7 +584,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-04-22T03:38:52.660878Z",
+  "generated": "2024-04-27T18:33:50.820382Z",
   "generator": "pub",
   "generatorVersion": "3.3.4"
 }

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
 
+import '../../../../domain/models/client.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -17,18 +19,16 @@ class EditClientWidget extends StatefulWidget {
 
 class _EditClientWidgetState extends State<EditClientWidget> {
   late EditClientModel _model;
-
+  Client cliente = Get.arguments as Client;
+  final controllerId = TextEditingController();
+  final controllerName = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => EditClientModel());
-
-    _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
-
-    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 
@@ -41,6 +41,9 @@ class _EditClientWidgetState extends State<EditClientWidget> {
 
   @override
   Widget build(BuildContext context) {
+    UCController ucController = Get.find();
+    controllerId.text = cliente.id.toString();
+    controllerName.text = cliente.name;
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -130,7 +133,7 @@ class _EditClientWidgetState extends State<EditClientWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Report #1',
+                                        'Cliente #${cliente.id}',
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -139,7 +142,7 @@ class _EditClientWidgetState extends State<EditClientWidget> {
                                             ),
                                       ),
                                       Text(
-                                        'Gendo Ikari',
+                                        cliente.name,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -176,7 +179,7 @@ class _EditClientWidgetState extends State<EditClientWidget> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: _model.textController1,
+                                      controller: controllerId,
                                       focusNode: _model.textFieldFocusNode1,
                                       autofocus: true,
                                       obscureText: false,
@@ -247,7 +250,7 @@ class _EditClientWidgetState extends State<EditClientWidget> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: _model.textController2,
+                                      controller: controllerName,
                                       focusNode: _model.textFieldFocusNode2,
                                       autofocus: true,
                                       obscureText: false,
@@ -314,8 +317,14 @@ class _EditClientWidgetState extends State<EditClientWidget> {
                                     ),
                                   ),
                                   FFButtonWidget(
-                                    onPressed: () {
-                                      //print('Button pressed ...');
+                                    onPressed: () async {
+                                      int clientId = int.tryParse(
+                                              controllerId.text) ??
+                                          0; // Convertir a int, o 0 si no se puede convertir
+                                      await ucController.updateClient(Client(
+                                        id: clientId,
+                                        name: controllerName.text,
+                                      ));
                                     },
                                     text: 'Edit',
                                     options: FFButtonOptions(
