@@ -9,6 +9,8 @@ import 'package:proyecto_en_clase201410/domain/use_case/us_usecase.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/login_controller.dart';
 import 'package:proyecto_en_clase201410/index.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
+import 'package:proyecto_en_clase201410/ui/pages/uc/add_us_user/add_us_widget.dart';
+import 'package:proyecto_en_clase201410/ui/pages/uc/create_client/add_client_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'ui/controllers/us_controller.dart';
 
@@ -71,6 +73,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
             name: '/soporte/createReport',
             page: () => const CreateReportWidget()),
+        GetPage(
+            name: '/coordinador/addClient',
+            page: () => const AddClientWidget()),
+        GetPage(
+            name: '/coordinador/addUSUser', page: () => const AddUserWidget()),
         GetPage(
             name: '/coordinador/editClient',
             page: () => const EditClientWidget()),

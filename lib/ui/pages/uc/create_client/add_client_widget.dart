@@ -19,24 +19,20 @@ class AddClientWidget extends StatefulWidget {
 
 class _AddClientWidgetState extends State<AddClientWidget> {
   late AddClientModel _model;
-  final controllerId = TextEditingController();
   final controllerName = TextEditingController();
-  final controllerNew = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => AddClientModel());
-    _model.textFieldFocusNode1 ??= FocusNode();
     _model.textFieldFocusNode2 ??= FocusNode();
-    _model.textFieldFocusNode3 ??= FocusNode();
   }
 
   @override
   void dispose() {
     _model.dispose();
-
+    controllerName.dispose();
     super.dispose();
   }
 
@@ -169,77 +165,6 @@ class _AddClientWidgetState extends State<AddClientWidget> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: controllerId,
-                                      focusNode: _model.textFieldFocusNode1,
-                                      autofocus: true,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'ID',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        errorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        focusedErrorBorder:
-                                            UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      validator: _model.textController1Validator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    child: TextFormField(
                                       controller: controllerName,
                                       focusNode: _model.textFieldFocusNode2,
                                       autofocus: true,
@@ -306,93 +231,20 @@ class _AddClientWidgetState extends State<AddClientWidget> {
                                           .asValidator(context),
                                     ),
                                   ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    child: TextFormField(
-                                      controller: controllerNew,
-                                      focusNode: _model.textFieldFocusNode3,
-                                      autofocus: true,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'New',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        errorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        focusedErrorBorder:
-                                            UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      validator: _model.textController3Validator
-                                          .asValidator(context),
-                                    ),
-                                  ),
                                   FFButtonWidget(
                                     onPressed: () async {
-                                      int clientId = int.tryParse(
-                                              controllerId.text) ??
-                                          0; // Convertir a int, o 0 si no se puede convertir
                                       await ucController.addClient(Client(
-                                        id: clientId,
                                         name: controllerName.text,
                                       ));
+                                      Get.back();
                                     },
-                                    text: 'Add',
+                                    text: 'Save',
                                     options: FFButtonOptions(
+                                      width: double.infinity,
                                       height: 40.0,
                                       padding:
                                           const EdgeInsetsDirectional.fromSTEB(
-                                              24.0, 0.0, 24.0, 0.0),
+                                              0.0, 0.0, 0.0, 0.0),
                                       iconPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
@@ -413,7 +265,7 @@ class _AddClientWidgetState extends State<AddClientWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 16.0)),
+                                ],
                               ),
                             ),
                           ),

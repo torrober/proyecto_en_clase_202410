@@ -526,11 +526,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
         floatingActionButton: _model.tabBarController?.index == 0
             ? FloatingActionButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Support Management'),
-                    ),
-                  );
+                  Get.toNamed('/coordinador/addUSUser');
                 },
                 child: const Icon(Icons.add),
                 backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -538,23 +534,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
             : _model.tabBarController?.index == 1
                 ? FloatingActionButton(
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Client Management'),
-                            content: Text('Popup for Client Management'),
-                            actions: <Widget>[
-                              TextButton(
-                                child: Text('Close'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                      Get.toNamed('/coordinador/addClient');
                     },
                     child: const Icon(Icons.add),
                     backgroundColor: FlutterFlowTheme.of(context).primary,
