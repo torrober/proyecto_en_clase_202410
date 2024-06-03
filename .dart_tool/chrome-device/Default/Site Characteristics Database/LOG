@@ -1,1 +1,8 @@
-2024/06/02-20:26:31.378 16b8 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.4cf4f72\flutter_tools_chrome_device.d59f37c3\Default\Site Characteristics Database/MANIFEST-000001
+2024/06/02-22:51:07.588 3a04 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.3ff4fc73\flutter_tools_chrome_device.43d364ec\Default\Site Characteristics Database/MANIFEST-000001
+2024/06/02-22:51:07.596 3a04 Recovering log #3
+2024/06/02-22:51:07.596 3a04 (ignoring error) C:\Users\graba\AppData\Local\Temp\flutter_tools.3ff4fc73\flutter_tools_chrome_device.43d364ec\Default\Site Characteristics Database/000003.log: dropping 787 bytes; Corruption: checksum mismatch
+2024/06/02-22:51:07.597 3a04 Level-0 table #6: started
+2024/06/02-22:51:07.610 3a04 Level-0 table #6: 729 bytes OK
+2024/06/02-22:51:07.610 3a04 Recovering log #6
+2024/06/02-22:51:07.611 3a04 Reusing old log C:\Users\graba\AppData\Local\Temp\flutter_tools.3ff4fc73\flutter_tools_chrome_device.43d364ec\Default\Site Characteristics Database/000006.log 
+2024/06/02-22:51:07.618 3a04 Delete type=0 #3

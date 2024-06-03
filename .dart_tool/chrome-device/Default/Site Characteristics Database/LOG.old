@@ -1,6 +1,1 @@
-2024/06/02-20:26:30.943 16b8 Log #3: ignoring Corruption: bad WriteBatch Put
-2024/06/02-20:26:31.136 16b8 Log #3: 27 ops saved to Table #4 OK
-2024/06/02-20:26:31.172 16b8 Archiving C:\Users\graba\AppData\Local\Temp\flutter_tools.4cf4f72\flutter_tools_chrome_device.d59f37c3\Default\Site Characteristics Database/000003.log: OK
-2024/06/02-20:26:31.172 16b8 Table #4: 30 entries OK
-2024/06/02-20:26:31.175 16b8 Archiving C:\Users\graba\AppData\Local\Temp\flutter_tools.4cf4f72\flutter_tools_chrome_device.d59f37c3\Default\Site Characteristics Database/MANIFEST-000001: OK
-2024/06/02-20:26:31.240 16b8 **** Repaired leveldb C:\Users\graba\AppData\Local\Temp\flutter_tools.4cf4f72\flutter_tools_chrome_device.d59f37c3\Default\Site Characteristics Database; recovered 1 files; 752 bytes. Some data may have been lost. ****
+2024/06/02-20:26:31.378 16b8 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.4cf4f72\flutter_tools_chrome_device.d59f37c3\Default\Site Characteristics Database/MANIFEST-000001
