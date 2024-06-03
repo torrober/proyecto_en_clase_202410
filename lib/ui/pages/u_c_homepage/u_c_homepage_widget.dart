@@ -264,7 +264,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   onTap: () async {
                                                     // Aquí puedes definir la acción al hacer tap en el ícono de editar
                                                     Get.toNamed(
-                                                        '/coordinador/editSoporte', arguments: usuario);
+                                                        '/coordinador/editSoporte',
+                                                        arguments: usuario);
                                                   },
                                                   child: Icon(
                                                     Icons.edit,
@@ -369,7 +370,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   onTap: () async {
                                                     // Aquí puedes definir la acción al hacer tap en el ícono de editar
                                                     Get.toNamed(
-                                                        '/coordinador/editClient', arguments: cliente);
+                                                        '/coordinador/editClient',
+                                                        arguments: cliente);
                                                   },
                                                   child: Icon(
                                                     Icons.edit,
@@ -490,7 +492,8 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                   onTap: () async {
                                                     // Aquí puedes definir la acción al hacer tap en el ícono de editar
                                                     Get.toNamed(
-                                                        '/coordinador/report',arguments: reporte);
+                                                        '/coordinador/report',
+                                                        arguments: reporte);
                                                   },
                                                   child: Icon(
                                                     Icons.rate_review,
@@ -520,6 +523,43 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
             ],
           ),
         ),
+        floatingActionButton: _model.tabBarController?.index == 0
+            ? FloatingActionButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Support Management'),
+                    ),
+                  );
+                },
+                child: const Icon(Icons.add),
+                backgroundColor: FlutterFlowTheme.of(context).primary,
+              )
+            : _model.tabBarController?.index == 1
+                ? FloatingActionButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Client Management'),
+                            content: Text('Popup for Client Management'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('Close'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: const Icon(Icons.add),
+                    backgroundColor: FlutterFlowTheme.of(context).primary,
+                  )
+                : null,
       ),
     );
   }
