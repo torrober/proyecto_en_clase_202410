@@ -74,7 +74,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'AddClient',
-          path: '/addClient',
+          path: '/coordinador/addClient',
           builder: (context, params) => const AddClientWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
