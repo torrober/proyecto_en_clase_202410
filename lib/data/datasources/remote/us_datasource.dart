@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../domain/models/us.dart';
@@ -40,8 +41,25 @@ class USDataSource {
   }
 
   Future<User?> getUserByEmail(String email, String password) async {
-    List<User> users = await getUsers();
+    List<User> users = [];
     User? user;
+
+    // Verifies if the device has an internet connection
+    bool hasConnection = await checkInternetConnection();
+
+    if (hasConnection) {
+      // If there is connection, get users from the database or API
+      users = await getUsers();
+    } else {
+      // If there is no connection, get users stored in SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? cachedUsers = prefs.getString('users');
+
+      if (cachedUsers != null) {
+        List<dynamic> userJsonList = jsonDecode(cachedUsers);
+        users = userJsonList.map((json) => User.fromJson(json)).toList();
+      }
+    }
 
     try {
       user = users.firstWhere(
@@ -108,5 +126,12 @@ class USDataSource {
       logError("Got error code ${response.statusCode}");
       return Future.value(false);
     }
+  }
+
+  Future<bool> checkInternetConnection() async {
+    // Implement the logic to check for internet connection
+    // For example, using the connectivity_plus package
+    return Connectivity().checkConnectivity() != ConnectivityResult.none;
+    //return true; // Placeholder
   }
 }
