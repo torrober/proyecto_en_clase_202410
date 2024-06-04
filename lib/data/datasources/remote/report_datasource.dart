@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'package:loggy/loggy.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../domain/models/report.dart';
 import 'package:http/http.dart' as http;
 
 class ReportsDataSource {
   final String apiKey = 'nJt7vk';
   final http.Client httpClient;
-  
- ReportsDataSource({http.Client? client}) : httpClient = client ?? http.Client();
+
+  ReportsDataSource({http.Client? client})
+      : httpClient = client ?? http.Client();
 
   Future<List<Report>> getReports() async {
     List<Report> reports = [];
@@ -15,17 +17,23 @@ class ReportsDataSource {
         .resolveUri(Uri(queryParameters: {
       "format": 'json',
     }));
-    //var response = await http.get(request);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     var response = await httpClient.get(request);
 
     if (response.statusCode == 200) {
       logInfo(response.body);
       final data = jsonDecode(response.body);
-
+      print('prefs reports saved');
+      await prefs.setString('reports', response.body);
       reports = List<Report>.from(data.map((x) => Report.fromJson(x)));
     } else {
-      logError("Got error code ${response.statusCode}");
-      return Future.error('Error code ${response.statusCode}');
+      final String? cachedReports = prefs.getString('reports');
+      if (cachedReports != null) {
+        final data = jsonDecode(cachedReports);
+        reports = List<Report>.from(data.map((x) => Report.fromJson(x)));
+      } else {
+        return Future.error('Error code ${response.statusCode}');
+      }
     }
 
     return Future.value(reports);

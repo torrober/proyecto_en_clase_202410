@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:loggy/loggy.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../domain/models/client.dart';
 import 'package:http/http.dart' as http;
 
 class ClientDataSource {
   final String apiKey = 'oSEaCD';
   final http.Client httpClient;
-  
-  ClientDataSource({http.Client? client}) : httpClient = client ?? http.Client();
 
+  ClientDataSource({http.Client? client})
+      : httpClient = client ?? http.Client();
 
   Future<List<Client>> getClients() async {
     List<Client> clients = [];
@@ -18,17 +19,24 @@ class ClientDataSource {
     }));
 
     //var response = await http.get(request);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     var response = await httpClient.get(request);
-
 
     if (response.statusCode == 200) {
       //logInfo(response.body);
       final data = jsonDecode(response.body);
-
+      await prefs.setString('clients', response.body);
+      print('pref client saved');
       clients = List<Client>.from(data.map((x) => Client.fromJson(x)));
     } else {
       logError("Got error code ${response.statusCode}");
-      return Future.error('Error code ${response.statusCode}');
+      final String? cachedReports = prefs.getString('clients');
+      if (cachedReports != null) {
+        final data = jsonDecode(cachedReports);
+        clients = List<Client>.from(data.map((x) => Client.fromJson(x)));
+      } else {
+        return Future.error('Error code ${response.statusCode}');
+      }
     }
 
     return Future.value(clients);
@@ -109,5 +117,4 @@ class ClientDataSource {
   //     return Future.error('Error code ${response.statusCode}');
   //   }
   // }
-  
 }

@@ -287,9 +287,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FFButtonWidget(
                                 onPressed: () async {
                                   // Validar el usuario y la contraseña
-                                  user = await loginController.veriUser(
+                                  /*user = await loginController.veriUser(
                                       controllerEmail.text,
-                                      controllerPassword.text);
+                                      controllerPassword.text);*/
                                   if (kDebugMode) {
                                     print(user?.firstName);
                                   }

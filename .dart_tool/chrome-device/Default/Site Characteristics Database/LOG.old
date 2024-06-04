@@ -1,10 +1,6 @@
-2024/06/04-15:34:12.564 51c0 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.533e822b\flutter_tools_chrome_device.e309f8ca\Default\Site Characteristics Database/MANIFEST-000001
-2024/06/04-15:34:12.569 51c0 Recovering log #3
-2024/06/04-15:34:12.569 51c0 (ignoring error) C:\Users\graba\AppData\Local\Temp\flutter_tools.533e822b\flutter_tools_chrome_device.e309f8ca\Default\Site Characteristics Database/000003.log: dropping 2581 bytes; Corruption: checksum mismatch
-2024/06/04-15:34:12.569 51c0 Level-0 table #3: started
-2024/06/04-15:34:12.579 51c0 Level-0 table #3: 729 bytes OK
-2024/06/04-15:34:12.580 51c0 Recovering log #6
-2024/06/04-15:34:12.580 51c0 Reusing old log C:\Users\graba\AppData\Local\Temp\flutter_tools.533e822b\flutter_tools_chrome_device.e309f8ca\Default\Site Characteristics Database/000006.log 
-2024/06/04-15:34:12.589 51c0 Delete type=0 #3
-2024/06/04-15:34:12.589 51c0 Delete type=2 #4
-2024/06/04-15:34:12.589 51c0 Delete type=2 #6
+2024/06/04-17:30:03.493 4604 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.c81e2446\flutter_tools_chrome_device.8574a447\Default\Site Characteristics Database/MANIFEST-000001
+2024/06/04-17:30:03.496 4604 Recovering log #6
+2024/06/04-17:30:03.525 4604 Reusing old log C:\Users\graba\AppData\Local\Temp\flutter_tools.c81e2446\flutter_tools_chrome_device.8574a447\Default\Site Characteristics Database/000006.log 
+2024/06/04-17:30:03.525 4604 Delete type=0 #3
+2024/06/04-17:30:03.525 4604 Delete type=2 #4
+2024/06/04-17:30:03.525 4604 Delete type=2 #6

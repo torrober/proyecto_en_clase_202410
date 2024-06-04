@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:loggy/loggy.dart';
-import 'package:proyecto_en_clase201410/data/files/FileManager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../domain/models/us.dart';
 import 'package:http/http.dart' as http;
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class USDataSource {
   final String apiKey = 'oZkfzz';
   final http.Client httpClient;
-  final FileManager fileManager = FileManager();
   USDataSource({http.Client? client}) : httpClient = client ?? http.Client();
 
   Future<List<User>> getUsers() async {
@@ -16,25 +16,26 @@ class USDataSource {
         .resolveUri(Uri(queryParameters: {
       "format": 'json',
     }));
-    //var response = await http.get(request);
     var response = await httpClient.get(request);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if (response.statusCode == 200) {
-      fileManager.saveFile('users.json', response.body);
-      print('file written');
+      await prefs.setString('users', response.body);
       final data = jsonDecode(response.body);
-
+      print('prefs written');
       users = List<User>.from(data.map((x) => User.fromJson(x)));
     } else {
       logError("Got error code ${response.statusCode}, trying to read backup.");
-      String? content = await fileManager.readFile('users.json');
-      if (content != null) {
-        final data = jsonDecode(content);
+      final String? cachedUsers = prefs.getString('users');
+      if (cachedUsers != null) {
+        final data = jsonDecode(cachedUsers);
         users = List<User>.from(data.map((x) => User.fromJson(x)));
+        logError("Using cached users due to error code ${response.statusCode}");
+      } else {
+        return Future.error(
+            'Error code ${response.statusCode} and no cached users available');
       }
-      return Future.error('Error code ${response.statusCode}');
     }
-
     return Future.value(users);
   }
 
