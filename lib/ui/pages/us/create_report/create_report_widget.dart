@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/domain/models/report.dart';
+import 'package:proyecto_en_clase201410/domain/models/us.dart';
 
 import '../../../controllers/us_controller.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
@@ -24,7 +25,7 @@ class CreateReportWidget extends StatefulWidget {
 class _CreateReportWidgetState extends State<CreateReportWidget> {
   late CreateReportModel _model;
   final controllerDescription = TextEditingController();
-
+  User user = Get.arguments as User;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -408,6 +409,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                                       _model.datePicked?.toIso8601String() ??
                                           "",
                                   duracion: _model.countControllerValue ?? 0,
+                                  idUS:user.id ?? 0,
                                 ));
                               },
                               text: 'Save',

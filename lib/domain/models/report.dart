@@ -6,6 +6,7 @@ class Report {
     required this.nameClient,
     required this.horaInicio,
     required this.duracion,
+    required this.idUS,
   });
 
   int? id;
@@ -14,14 +15,16 @@ class Report {
   String nameClient; // Cambiar el tipo de String a int
   String horaInicio;
   int duracion; // Cambiar el tipo de String a int
+  int? idUS;
 
   factory Report.fromJson(Map<String, dynamic> json) => Report(
         id: json["id"],
-        score: json["Score"] ?? 0, // Manejar el caso de valor nulo
+        score: json["score"] ?? 0, // Manejar el caso de valor nulo
         description: json["description"] ?? "somedescription",
         nameClient: json["nameClient"] ?? "someName", // Manejar el caso de valor nulo
         horaInicio: json["horaInicio"] ?? "somehora",
         duracion: json["duracion"] ?? 0, // Manejar el caso de valor nulo
+        idUS: json["idUS"] ?? 0
       );
 
   Map<String, dynamic> toJson() => {
@@ -31,5 +34,6 @@ class Report {
         "nameClient": nameClient,
         "horaInicio": horaInicio,
         "duracion": duracion,
+        "idUS": idUS ?? 0
       };
 }

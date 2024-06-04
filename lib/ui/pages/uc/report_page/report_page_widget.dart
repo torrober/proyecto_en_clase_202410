@@ -316,6 +316,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                             nameClient: reporte.nameClient,
                             horaInicio: reporte.horaInicio,
                             duracion: reporte.duracion,
+                            idUS: reporte.idUS
                           ));
                         },
                         text: 'Guardar',

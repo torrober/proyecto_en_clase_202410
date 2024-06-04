@@ -61,6 +61,8 @@ class UCController extends GetxController {
     getUsers();
   }
 
+
+
   ////////////////////
   getClients() async {
     logInfo("Getting clients");
