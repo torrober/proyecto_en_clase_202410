@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:loggy/loggy.dart';
+import 'package:proyecto_en_clase201410/data/files/FileManager.dart';
 import '../../../../../domain/models/us.dart';
 import 'package:http/http.dart' as http;
 
 class USDataSource {
   final String apiKey = 'oZkfzz';
   final http.Client httpClient;
-  
+  final FileManager fileManager = FileManager();
   USDataSource({http.Client? client}) : httpClient = client ?? http.Client();
 
   Future<List<User>> getUsers() async {
@@ -19,12 +20,18 @@ class USDataSource {
     var response = await httpClient.get(request);
 
     if (response.statusCode == 200) {
-      //logInfo(response.body);
+      fileManager.saveFile('users.json', response.body);
+      print('file written');
       final data = jsonDecode(response.body);
 
       users = List<User>.from(data.map((x) => User.fromJson(x)));
     } else {
-      logError("Got error code ${response.statusCode}");
+      logError("Got error code ${response.statusCode}, trying to read backup.");
+      String? content = await fileManager.readFile('users.json');
+      if (content != null) {
+        final data = jsonDecode(content);
+        users = List<User>.from(data.map((x) => User.fromJson(x)));
+      }
       return Future.error('Error code ${response.statusCode}');
     }
 
