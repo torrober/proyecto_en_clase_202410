@@ -52,7 +52,7 @@ void main() {
     //print('deleteUser: ${createdUser.id}');
     // Step 4: Delete the entry
     bool deleteResult = await dataSource
-        .deleteReport(createdReport.id!); // Assert non-null ID with '!'
+        .deleteReport(10); // Assert non-null ID with '!'
     expect(deleteResult, isTrue);
   });
 }

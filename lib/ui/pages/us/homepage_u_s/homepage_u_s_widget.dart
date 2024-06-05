@@ -17,6 +17,13 @@ class HomepageUSWidget extends StatefulWidget {
 class _HomepageUSWidgetState extends State<HomepageUSWidget> {
   User user = Get.arguments as User;
   USController usController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    usController.getReports();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -33,18 +33,18 @@ class USController extends GetxController {
   addReport(Report report) async {
     logInfo("Add report");
     await userSUseCase.addReport(report);
-    getReports();
+    await getReports();
   }
 
   updateReport(Report report) async {
     logInfo("Update report");
     await userSUseCase.updateReport(report);
-    getReports();
+    await getReports();
   }
 
   void deleteReport(int id) async {
     await userSUseCase.deleteReport(id);
-    getReports();
+    await getReports();
   }
   // void simulateProcess() async {
   //   await userUseCase.simulateProcess();

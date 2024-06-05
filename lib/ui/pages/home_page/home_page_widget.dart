@@ -287,9 +287,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FFButtonWidget(
                                 onPressed: () async {
                                   // Validar el usuario y la contraseña
-                                  /*user = await loginController.veriUser(
+                                  user = await loginController.veriUser(
                                       controllerEmail.text,
-                                      controllerPassword.text);*/
+                                      controllerPassword.text);
                                   if (kDebugMode) {
                                     print(user?.firstName);
                                   }
@@ -305,8 +305,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     }
                                     Get.offNamed('/soporte', arguments: user);
                                   } else {
-                                    // Si la validación falla, mostrar un mensaje de error o tomar otra acción
-                                    // Aquí puedes mostrar un SnackBar con un mensaje de error
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                           content: Text(

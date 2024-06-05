@@ -23,7 +23,6 @@ class ReportsDataSource {
     if (response.statusCode == 200) {
       logInfo(response.body);
       final data = jsonDecode(response.body);
-      print('prefs reports saved');
       await prefs.setString('reports', response.body);
       reports = List<Report>.from(data.map((x) => Report.fromJson(x)));
     } else {
@@ -49,7 +48,7 @@ class ReportsDataSource {
       },
       body: jsonEncode(report.toJson()),
     );
-
+    print(response.statusCode);
     if (response.statusCode == 201) {
       //logInfo(response.body);
       return Future.value(true);

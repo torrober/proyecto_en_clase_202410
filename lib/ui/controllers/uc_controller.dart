@@ -47,18 +47,18 @@ class UCController extends GetxController {
   addUser(User user) async {
     logInfo("Add user");
     await userUseCase.addUser(user);
-    getUsers();
+    await getUsers();
   }
 
   updateUser(User user) async {
     logInfo("Update user");
     await userUseCase.updateUser(user);
-    getUsers();
+    await getUsers();
   }
 
   void deleteUser(int id) async {
     await userUseCase.deleteUser(id);
-    getUsers();
+    await getUsers();
   }
 
 
@@ -72,18 +72,18 @@ class UCController extends GetxController {
   addClient(Client client) async {
     logInfo("Add client");
     await userUseCase.addClient(client);
-    getUsers();
+    await getClients();
   }
 
   updateClient(Client client) async {
     logInfo("Update client");
     await userUseCase.updateClient(client);
-    getClients();
+    await getClients();
   }
 
   void deleteClient(int id) async {
     await userUseCase.deleteClient(id);
-    getClients();
+    await getClients();
   }
   ////////////
 
@@ -95,18 +95,18 @@ class UCController extends GetxController {
   addReport(Report report) async {
     logInfo("Add report");
     await userUseCase.addReport(report);
-    getReports();
+    await getReports();
   }
 
   updateReport(Report report) async {
     logInfo("Update report");
     await userUseCase.updateReport(report);
-    getReports();
+    await getReports();
   }
 
   void deleteReport(int id) async {
     await userUseCase.deleteReport(id);
-    getReports();
+    await getReports();
   }
 
   // void simulateProcess() async {

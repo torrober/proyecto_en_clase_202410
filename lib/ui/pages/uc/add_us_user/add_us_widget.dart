@@ -448,7 +448,7 @@ class _AddUserWidgetState extends State<AddUserWidget> {
                                   email: controllerEmail.text,
                                   password: controllerPassword.text,
                                 ));
-                                Get.back();
+                                Get.offNamed('/coordinador');
                               },
                               text: 'Add User',
                               options: FFButtonOptions(

@@ -305,7 +305,7 @@ class _AddClientWidgetState extends State<AddClientWidget> {
                                           // Añadir el cliente si pasa la validación
                                           await ucController
                                               .addClient(Client(name: name));
-                                          Get.back();
+                                          Get.offNamed('/coordinador');
                                         },
                                         text: 'Save',
                                         options: FFButtonOptions(

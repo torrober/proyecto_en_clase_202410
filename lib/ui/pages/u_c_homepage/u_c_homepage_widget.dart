@@ -42,6 +42,9 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
   @override
   void initState() {
     super.initState();
+    ucController.getClients();
+    ucController.getReports();
+    ucController.getUsers();
     _model = createModel(context, () => UCHomepageModel());
 
     _model.tabBarController = TabController(
@@ -54,7 +57,9 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
   @override
   void dispose() {
     _model.dispose();
-
+    ucController.getClients();
+    ucController.getReports();
+    ucController.getUsers();
     super.dispose();
   }
 
@@ -198,7 +203,6 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                             (BuildContext context, int index) {
                                           var usuario =
                                               ucController.users[index];
-
                                           // Filtrar los reportes del usuario actual
                                           var reportesUsuario = ucController
                                               .reports

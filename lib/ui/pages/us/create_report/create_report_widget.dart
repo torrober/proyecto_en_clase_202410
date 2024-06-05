@@ -409,8 +409,9 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                                       _model.datePicked?.toIso8601String() ??
                                           "",
                                   duracion: _model.countControllerValue ?? 0,
-                                  idUS:user.id ?? 0,
+                                  idUS: user.id ?? 0,
                                 ));
+                                Get.offNamed('/soporte', arguments: user);
                               },
                               text: 'Save',
                               options: FFButtonOptions(
