@@ -181,7 +181,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Reporte a cliente #${reporte.nameClient}',
+                                              'Reporte a cliente',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .titleLarge
@@ -191,7 +191,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                                       ),
                                             ),
                                             Text(
-                                              "A VER",
+                                              "${reporte.nameClient}",
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -218,7 +218,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                          '1/5',
+                                          (reporte.score.toString() + '/5'),
                                           style: FlutterFlowTheme.of(context)
                                               .titleLarge
                                               .override(
@@ -383,6 +383,40 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          int score = _model.countControllerValue ??
+                              0; // Convertir a int, o 0 si no se puede convertir
+                          var id = reporte.id?.toInt() ?? 0;
+                          ucController.deleteReport(id);
+                          Get.back();
+                        },
+                        text: 'Eliminar',
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Colors.red,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
