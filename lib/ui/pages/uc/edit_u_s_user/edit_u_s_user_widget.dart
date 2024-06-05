@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'edit_u_s_user_model.dart';
 export 'edit_u_s_user_model.dart';
+import 'package:http/http.dart' as http;
 
 class EditUSUserWidget extends StatefulWidget {
   const EditUSUserWidget({super.key});
@@ -47,11 +48,23 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
     checkConnectivity();
   }
 
-  Future<void> checkConnectivity() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      // No hay conexión a Internet, mostrar un diálogo
+  Future<bool> checkConnectivity() async {
+    try {
+      var response = await http.get(
+        Uri.parse("https://ifconfig.me/ip"),
+      );
+
+      // Si el código de estado de la respuesta es 200, la solicitud fue exitosa
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Si hay algún otro código de estado, no tratamos explícitamente ese caso
+        // Aquí simplemente devolvemos false
+        return false;
+      }
+    } catch (e) {
       showNoInternetDialog();
+      return false;
     }
   }
 
@@ -65,6 +78,7 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
+              Get.back();
             },
             child: Text('OK'),
           ),

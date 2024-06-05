@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/domain/models/report.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
-
+import 'package:http/http.dart' as http;
 import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -32,11 +32,23 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
     checkConnectivity();
   }
 
-  Future<void> checkConnectivity() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      // No hay conexión a Internet, mostrar un diálogo
+  Future<bool> checkConnectivity() async {
+    try {
+      var response = await http.get(
+        Uri.parse("https://ifconfig.me/ip"),
+      );
+
+      // Si el código de estado de la respuesta es 200, la solicitud fue exitosa
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Si hay algún otro código de estado, no tratamos explícitamente ese caso
+        // Aquí simplemente devolvemos false
+        return false;
+      }
+    } catch (e) {
       showNoInternetDialog();
+      return false;
     }
   }
 
@@ -50,6 +62,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
+              Get.back();
             },
             child: Text('OK'),
           ),

@@ -1,4 +1,6 @@
-2024/06/04-18:43:33.587 3534 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.24430baf\flutter_tools_chrome_device.cf51132\Default\Local Storage\leveldb/MANIFEST-000001
-2024/06/04-18:43:33.604 3534 Recovering log #4
-2024/06/04-18:43:33.611 3534 Reusing old log C:\Users\graba\AppData\Local\Temp\flutter_tools.24430baf\flutter_tools_chrome_device.cf51132\Default\Local Storage\leveldb/000004.log 
-2024/06/04-18:43:33.613 3534 Delete type=0 #3
+2024/06/04-19:04:02.388 584c Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.8c24cd5\flutter_tools_chrome_device.be969611\Default\Local Storage\leveldb/MANIFEST-000001
+2024/06/04-19:04:02.402 584c Recovering log #4
+2024/06/04-19:04:02.402 584c Level-0 table #6: started
+2024/06/04-19:04:02.412 584c Level-0 table #6: 22772 bytes OK
+2024/06/04-19:04:02.434 584c Delete type=0 #3
+2024/06/04-19:04:02.434 584c Delete type=0 #4

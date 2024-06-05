@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/domain/models/client.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
-
+import 'package:http/http.dart' as http;
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -24,12 +24,19 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
   UCController ucController = Get.find();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  Future<bool> checkInternetConnection() async {
-    // Utiliza el paquete connectivity_plus para verificar la conexión a Internet
-    var connectivityResult = await Connectivity().checkConnectivity();
-
-    // Comprueba si hay conexión o no
-    return connectivityResult != ConnectivityResult.none;
+  Future<bool> checkConnectivity() async {
+    try {
+      var response = await http.get(Uri.parse("https://doihaveinternet.com/"));
+      // Si el código de estado de la respuesta está en el rango 200, la solicitud fue exitosa
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      // Si hay algún error al realizar la solicitud, devolvemos false
+      return false;
+    }
   }
 
   @override
@@ -332,6 +339,7 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         // Aquí puedes definir la acción al hacer tap en el ícono de editar
+
                                                         Get.toNamed(
                                                             '/coordinador/editSoporte',
                                                             arguments: usuario);
