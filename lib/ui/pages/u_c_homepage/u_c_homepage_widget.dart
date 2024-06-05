@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/domain/models/client.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
@@ -23,6 +24,13 @@ class _UCHomepageWidgetState extends State<UCHomepageWidget>
   UCController ucController = Get.find();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  Future<bool> checkInternetConnection() async {
+    // Utiliza el paquete connectivity_plus para verificar la conexión a Internet
+    var connectivityResult = await Connectivity().checkConnectivity();
+
+    // Comprueba si hay conexión o no
+    return connectivityResult != ConnectivityResult.none;
+  }
 
   @override
   void initState() {

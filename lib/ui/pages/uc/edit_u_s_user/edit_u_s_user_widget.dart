@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/us.dart';
@@ -43,6 +44,33 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
 
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
+    checkConnectivity();
+  }
+
+  Future<void> checkConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      // No hay conexión a Internet, mostrar un diálogo
+      showNoInternetDialog();
+    }
+  }
+
+  void showNoInternetDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('No Internet Connection'),
+        content: Text('Please check your internet connection and try again.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override

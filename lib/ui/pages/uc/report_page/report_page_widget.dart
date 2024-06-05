@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/domain/models/report.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
@@ -28,6 +29,33 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ReportPageModel());
+    checkConnectivity();
+  }
+
+  Future<void> checkConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      // No hay conexión a Internet, mostrar un diálogo
+      showNoInternetDialog();
+    }
+  }
+
+  void showNoInternetDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('No Internet Connection'),
+        content: Text('Please check your internet connection and try again.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -307,17 +335,16 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                       padding: const EdgeInsets.all(10.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          int score = _model
-                              .countControllerValue ?? 0; // Convertir a int, o 0 si no se puede convertir
+                          int score = _model.countControllerValue ??
+                              0; // Convertir a int, o 0 si no se puede convertir
                           await ucController.updateReport(Report(
-                            id: reporte.id,
-                            score: score,
-                            description: reporte.description,
-                            nameClient: reporte.nameClient,
-                            horaInicio: reporte.horaInicio,
-                            duracion: reporte.duracion,
-                            idUS: reporte.idUS
-                          ));
+                              id: reporte.id,
+                              score: score,
+                              description: reporte.description,
+                              nameClient: reporte.nameClient,
+                              horaInicio: reporte.horaInicio,
+                              duracion: reporte.duracion,
+                              idUS: reporte.idUS));
                         },
                         text: 'Guardar',
                         options: FFButtonOptions(
