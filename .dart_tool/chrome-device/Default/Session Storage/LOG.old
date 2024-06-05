@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 2024/06/02-20:26:31.640 390 Creating DB C:\Users\graba\AppData\Local\Temp\flutter_tools.4cf4f72\flutter_tools_chrome_device.d59f37c3\Default\Session Storage since it was missing.
 2024/06/02-20:26:31.867 390 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.4cf4f72\flutter_tools_chrome_device.d59f37c3\Default\Session Storage/MANIFEST-000001
+=======
+2024/06/04-23:44:44.272 3444 Reusing MANIFEST C:\Users\JEFFRE~1\AppData\Local\Temp\flutter_tools.1c882869\flutter_tools_chrome_device.bde3650d\Default\Session Storage/MANIFEST-000001
+2024/06/04-23:44:44.274 3444 Recovering log #3
+2024/06/04-23:44:44.281 3444 Reusing old log C:\Users\JEFFRE~1\AppData\Local\Temp\flutter_tools.1c882869\flutter_tools_chrome_device.bde3650d\Default\Session Storage/000003.log 
+>>>>>>> origin/dev

@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/us.dart';
@@ -9,6 +10,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'edit_u_s_user_model.dart';
 export 'edit_u_s_user_model.dart';
+import 'package:http/http.dart' as http;
 
 class EditUSUserWidget extends StatefulWidget {
   const EditUSUserWidget({super.key});
@@ -43,6 +45,46 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
 
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
+    checkConnectivity();
+  }
+
+  Future<bool> checkConnectivity() async {
+    try {
+      var response = await http.get(
+        Uri.parse("https://ifconfig.me/ip"),
+      );
+
+      // Si el código de estado de la respuesta es 200, la solicitud fue exitosa
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Si hay algún otro código de estado, no tratamos explícitamente ese caso
+        // Aquí simplemente devolvemos false
+        return false;
+      }
+    } catch (e) {
+      showNoInternetDialog();
+      return false;
+    }
+  }
+
+  void showNoInternetDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('No Internet Connection'),
+        content: Text('Please check your internet connection and try again.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Get.back();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -528,6 +570,39 @@ class _EditUSUserWidgetState extends State<EditUSUserWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      int userId = int.tryParse(
+                                              controllerId.text) ??
+                                          0; // Convertir a int, o 0 si no se puede convertir
+                                      ucController.deleteUser(userId);
+                                      Get.back();
+                                    },
+                                    text: 'Delete',
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: Colors.red,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  )
                                 ].divide(const SizedBox(height: 16.0)),
                               ),
                             ),

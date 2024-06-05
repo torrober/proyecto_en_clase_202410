@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/domain/models/us.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/login_controller.dart';
 //import 'package:proyecto_en_clase201410/controllers/login_controller.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -20,6 +23,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LoginController loginController = Get.find();
+  User? user;
 
   @override
   void initState() {
@@ -282,18 +287,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FFButtonWidget(
                                 onPressed: () async {
                                   // Validar el usuario y la contraseña
-                                  if (controllerEmail.text ==
-                                          'a@a.com' &&
-                                      controllerPassword.text == '123') {
+                                  user = await loginController.veriUser(
+                                      controllerEmail.text,
+                                      controllerPassword.text);
+                                  if (kDebugMode) {
+                                    print(user?.firstName);
+                                  }
+                                  if ((controllerEmail.text == 'a@a.com' &&
+                                          controllerPassword.text == '123') ||
+                                      (controllerEmail.text == 'b@b.com' &&
+                                          controllerPassword.text == '123')) {
                                     // Si la validación es exitosa, redirigir al usuario a la ruta "/soporte"
                                     Get.offNamed('/coordinador');
-                                  } else if (controllerEmail.text ==
-                                          'b@b.com' &&
-                                      controllerPassword.text == '123') {
-                                    Get.offNamed('/soporte');
+                                  } else if (user != null) {
+                                    if (kDebugMode) {
+                                      print(user);
+                                    }
+                                    Get.offNamed('/soporte', arguments: user);
                                   } else {
-                                    // Si la validación falla, mostrar un mensaje de error o tomar otra acción
-                                    // Aquí puedes mostrar un SnackBar con un mensaje de error
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                           content: Text(

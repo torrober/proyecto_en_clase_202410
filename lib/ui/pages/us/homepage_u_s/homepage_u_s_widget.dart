@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,6 +57,16 @@ final List<Report> reports = [
   ),
   // Add more reports as needed
 ];
+=======
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/domain/models/us.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/us_controller.dart';
+
+import '../../../../flutter_flow/flutter_flow_icon_button.dart';
+import '../../../../flutter_flow/flutter_flow_theme.dart';
+>>>>>>> origin/dev
 
 class HomepageUSWidget extends StatefulWidget {
   const HomepageUSWidget({Key? key}) : super(key: key);
@@ -65,16 +76,36 @@ class HomepageUSWidget extends StatefulWidget {
 }
 
 class _HomepageUSWidgetState extends State<HomepageUSWidget> {
+<<<<<<< HEAD
+=======
+  User user = Get.arguments as User;
+  USController usController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    usController.getReports();
+  }
+
+>>>>>>> origin/dev
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+<<<<<<< HEAD
           Get.toNamed('/soporte/createReport');
         },
         backgroundColor: Colors.blue, // Customize as needed
         elevation: 8.0,
         child: Icon(
+=======
+          Get.toNamed('/soporte/createReport', arguments: user);
+        },
+        backgroundColor: Colors.blue, // Customize as needed
+        elevation: 8.0,
+        child: const Icon(
+>>>>>>> origin/dev
           Icons.add,
           color: Colors.white, // Customize as needed
           size: 24.0,
@@ -100,7 +131,11 @@ class _HomepageUSWidgetState extends State<HomepageUSWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
+<<<<<<< HEAD
                   'username',
+=======
+                  user.firstName,
+>>>>>>> origin/dev
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
                         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -123,6 +158,7 @@ class _HomepageUSWidgetState extends State<HomepageUSWidget> {
                   },
                 ),
               ],
+<<<<<<< HEAD
             ),
           ],
         ),
@@ -182,6 +218,100 @@ class _HomepageUSWidgetState extends State<HomepageUSWidget> {
               ),
             ),
           ],
+=======
+            ),
+          ],
+        ),
+        actions: const [],
+        centerTitle: true,
+        elevation: 4.0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SizedBox(
+              width: double.infinity, // Occupy 100% of the width
+              child: Obx(() => ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    physics:
+                        const NeverScrollableScrollPhysics(), // Disable scrolling of ListView.builder
+                    itemCount: usController.reports
+                        .where((reporte) => reporte.idUS == user.id)
+                        .length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var reporte = usController.reports
+                          .where((reporte) => reporte.idUS == user.id)
+                          .toList()[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          elevation: 4.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment
+                                  .spaceBetween, // Cambiado para espacio entre los elementos
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Report #${reporte.id}', // Mostrar el ID del reporte
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      reporte
+                                          .horaInicio, // Mostrar la fecha de inicio del reporte
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  'Score: ${reporte.score}', // Mostrar el puntaje del reporte
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )),
+            ),
+          ],
+>>>>>>> origin/dev
         ),
       ),
     );

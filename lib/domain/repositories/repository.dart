@@ -1,6 +1,6 @@
-import '../../data/client_datasource.dart';
-import '../../data/report_datasource.dart';
-import '../../data/us_datasource.dart';
+import '../../data/datasources/remote/client_datasource.dart';
+import '../../data/datasources/remote/report_datasource.dart';
+import '../../data/datasources/remote/us_datasource.dart';
 import '../models/us.dart';
 import '../models/client.dart';
 import '../models/report.dart';
@@ -10,25 +10,24 @@ class Repository {
   late ClientDataSource _clientDataSource;
   late ReportsDataSource _reportsDataSource;
 
-  // the base url of the API should end without the /
-  // final String _baseUrl =
-  //     "http://ip172-18-0-103-cjvmcv8gftqg00dhebr0-8000.direct.labs.play-with-docker.com";
+  get userDatatasource => _userDatatasource;
+
+  set userDatatasource(value) => _userDatatasource = value;
+
+  get clientDataSource => _clientDataSource;
+
+  set clientDataSource( value) => _clientDataSource = value;
+
+  get reportsDataSource => _reportsDataSource;
+
+  set reportsDataSource( value) => _reportsDataSource = value;
+
 
   Repository() {
     _userDatatasource = USDataSource();
     _clientDataSource = ClientDataSource();
     _reportsDataSource = ReportsDataSource();
   }
-
-  // Future<bool> login(String email, String password) async {
-  //   token = await _authenticationDataSource.login(_baseUrl, email, password);
-  //   return true;
-  // }
-
-  // Future<bool> signUp(String email, String password) async =>
-  //     await _authenticationDataSource.signUp(_baseUrl, email, password);
-
-  // Future<bool> logOut() async => await _authenticationDataSource.logOut();
 
 //Usuarios soportes
   Future<List<User>> getUsers() async => await _userDatatasource.getUsers();
@@ -41,6 +40,8 @@ class Repository {
 
   Future<bool> deleteUser(int id) async =>
       await _userDatatasource.deleteUser(id);
+
+  Future<User?> getUserByEmail(email,password) async => await _userDatatasource.getUserByEmail(email,password);     
 
   // Clientes
   Future<List<Client>> getClients() async =>
@@ -67,7 +68,4 @@ class Repository {
 
   Future<bool> deleteReport(int id) async =>
       await _reportsDataSource.deleteReport(id);
-
-  // Future<bool> simulateProcess() async =>
-  //     await _userDatatasource.simulateProcess(_baseUrl, token);
 }

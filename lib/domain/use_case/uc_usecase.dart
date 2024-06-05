@@ -15,6 +15,10 @@ class UCUseCase {
     logInfo("Getting users from UseCase");
     return await _repository.getUsers();
   }
+  Future<User?> getUserByEmail(email,password) async {
+    logInfo("Getting user by email from UseCase");
+    return await _repository.getUserByEmail(email,password);
+  }
 
   Future<void> addUser(User user) async => await _repository.addUser(user);
 

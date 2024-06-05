@@ -1,7 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/domain/models/report.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
-
+import 'package:http/http.dart' as http;
 import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -28,6 +29,46 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ReportPageModel());
+    checkConnectivity();
+  }
+
+  Future<bool> checkConnectivity() async {
+    try {
+      var response = await http.get(
+        Uri.parse("https://ifconfig.me/ip"),
+      );
+
+      // Si el código de estado de la respuesta es 200, la solicitud fue exitosa
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Si hay algún otro código de estado, no tratamos explícitamente ese caso
+        // Aquí simplemente devolvemos false
+        return false;
+      }
+    } catch (e) {
+      showNoInternetDialog();
+      return false;
+    }
+  }
+
+  void showNoInternetDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('No Internet Connection'),
+        content: Text('Please check your internet connection and try again.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Get.back();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -140,7 +181,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Reporte a cliente #${reporte.nameClient}',
+                                              'Reporte a cliente',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .titleLarge
@@ -150,7 +191,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                                       ),
                                             ),
                                             Text(
-                                              "A VER",
+                                              "${reporte.nameClient}",
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -177,7 +218,7 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                          '1/5',
+                                          (reporte.score.toString() + '/5'),
                                           style: FlutterFlowTheme.of(context)
                                               .titleLarge
                                               .override(
@@ -307,16 +348,16 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                       padding: const EdgeInsets.all(10.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          int score = _model
-                              .countControllerValue ?? 0; // Convertir a int, o 0 si no se puede convertir
+                          int score = _model.countControllerValue ??
+                              0; // Convertir a int, o 0 si no se puede convertir
                           await ucController.updateReport(Report(
-                            id: reporte.id,
-                            score: score,
-                            description: reporte.description,
-                            nameClient: reporte.nameClient,
-                            horaInicio: reporte.horaInicio,
-                            duracion: reporte.duracion,
-                          ));
+                              id: reporte.id,
+                              score: score,
+                              description: reporte.description,
+                              nameClient: reporte.nameClient,
+                              horaInicio: reporte.horaInicio,
+                              duracion: reporte.duracion,
+                              idUS: reporte.idUS));
                         },
                         text: 'Guardar',
                         options: FFButtonOptions(
@@ -342,6 +383,40 @@ class _ReportPageWidgetState extends State<ReportPageWidget> {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          int score = _model.countControllerValue ??
+                              0; // Convertir a int, o 0 si no se puede convertir
+                          var id = reporte.id?.toInt() ?? 0;
+                          ucController.deleteReport(id);
+                          Get.back();
+                        },
+                        text: 'Eliminar',
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Colors.red,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

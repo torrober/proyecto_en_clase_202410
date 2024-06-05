@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:loggy/loggy.dart';
+import 'package:proyecto_en_clase201410/data/models/us_db.dart';
 import 'package:proyecto_en_clase201410/domain/repositories/repository.dart';
 import 'package:proyecto_en_clase201410/domain/use_case/uc_usecase.dart';
 import 'package:proyecto_en_clase201410/domain/use_case/us_usecase.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/connectivity_controller.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/login_controller.dart';
 import 'package:proyecto_en_clase201410/index.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
@@ -13,6 +17,18 @@ import 'package:proyecto_en_clase201410/ui/pages/uc/add_us_user/add_us_widget.da
 import 'package:proyecto_en_clase201410/ui/pages/uc/create_client/add_client_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'ui/controllers/us_controller.dart';
+
+// Future<List<Box>> _openBox() async{
+//   List<Box> boxList = [];
+//   Hive.init(null);
+//   Hive.registerAdapter(UserDbAdapter());
+//   boxList.add(await Hive.openBox('userDb'));
+//   boxList.add(await Hive.openBox('userDbOffline'));
+//   logInfo("Box opened userDb ${await Hive.boxExists('userDb')}");
+//   logInfo("Box opened userDbOffline ${await Hive.boxExists('userDbOffline')}");
+//   return boxList;
+// }
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +39,9 @@ void main() async {
   Get.put(USController());
   Get.put(UCController());
   await FlutterFlowTheme.initialize();
-
+  // Llamamos a _openBox() para inicializar las cajas de Hive
+  //await _openBox();
+  //Get.put(ConnectivityController());
   runApp(const MyApp());
 }
 

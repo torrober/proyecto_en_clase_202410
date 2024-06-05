@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
 
+=======
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/domain/models/us.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
+import 'package:http/http.dart' as http;
+>>>>>>> origin/dev
 import '../../../../domain/models/client.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -31,6 +39,49 @@ class _AddUserWidgetState extends State<AddUserWidget> {
     _model.textFieldFocusNode1 ??= FocusNode();
     _model.textFieldFocusNode2 ??= FocusNode();
     _model.textFieldFocusNode3 ??= FocusNode();
+<<<<<<< HEAD
+=======
+    checkConnectivity();
+  }
+
+  Future<bool> checkConnectivity() async {
+    try {
+      var response = await http.get(
+        Uri.parse("https://ifconfig.me/ip"),
+      );
+
+      // Si el código de estado de la respuesta es 200, la solicitud fue exitosa
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Si hay algún otro código de estado, no tratamos explícitamente ese caso
+        // Aquí simplemente devolvemos false
+        return false;
+      }
+    } catch (e) {
+      showNoInternetDialog();
+      return false;
+    }
+  }
+
+  void showNoInternetDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('No Internet Connection'),
+        content: Text('Please check your internet connection and try again.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Get.back();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+>>>>>>> origin/dev
   }
 
   @override
@@ -400,7 +451,18 @@ class _AddUserWidgetState extends State<AddUserWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 24.0, 0.0, 0.0),
                             child: FFButtonWidget(
+<<<<<<< HEAD
                               onPressed: () {},
+=======
+                              onPressed: () async {
+                                await ucController.addUser(User(
+                                  firstName: controllerName.text,
+                                  email: controllerEmail.text,
+                                  password: controllerPassword.text,
+                                ));
+                                Get.offNamed('/coordinador');
+                              },
+>>>>>>> origin/dev
                               text: 'Add User',
                               options: FFButtonOptions(
                                 width: 250.0,

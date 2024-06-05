@@ -1,10 +1,15 @@
 import 'dart:convert';
 import 'package:loggy/loggy.dart';
-import '../../../domain/models/client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../domain/models/client.dart';
 import 'package:http/http.dart' as http;
 
 class ClientDataSource {
   final String apiKey = 'oSEaCD';
+  final http.Client httpClient;
+
+  ClientDataSource({http.Client? client})
+      : httpClient = client ?? http.Client();
 
   Future<List<Client>> getClients() async {
     List<Client> clients = [];
@@ -13,16 +18,25 @@ class ClientDataSource {
       "format": 'json',
     }));
 
-    var response = await http.get(request);
+    //var response = await http.get(request);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var response = await httpClient.get(request);
 
     if (response.statusCode == 200) {
       //logInfo(response.body);
       final data = jsonDecode(response.body);
-
+      await prefs.setString('clients', response.body);
+      print('pref client saved');
       clients = List<Client>.from(data.map((x) => Client.fromJson(x)));
     } else {
       logError("Got error code ${response.statusCode}");
-      return Future.error('Error code ${response.statusCode}');
+      final String? cachedReports = prefs.getString('clients');
+      if (cachedReports != null) {
+        final data = jsonDecode(cachedReports);
+        clients = List<Client>.from(data.map((x) => Client.fromJson(x)));
+      } else {
+        return Future.error('Error code ${response.statusCode}');
+      }
     }
 
     return Future.value(clients);
@@ -30,8 +44,8 @@ class ClientDataSource {
 
   Future<bool> addClient(Client client) async {
     logInfo("Web service, Adding client");
-
-    final response = await http.post(
+    //final response = await http.post
+    final response = await httpClient.post(
       Uri.parse("https://retoolapi.dev/$apiKey/clientData"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -49,7 +63,8 @@ class ClientDataSource {
   }
 
   Future<bool> updateClient(Client client) async {
-    final response = await http.put(
+    //final response = await http.put
+    final response = await httpClient.put(
       Uri.parse("https://retoolapi.dev/$apiKey/clientData/${client.id}"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -59,7 +74,6 @@ class ClientDataSource {
 
     if (response.statusCode == 201) {
       logInfo(response.body);
-      print(response.body);
       return Future.value(true);
     } else {
       logError("Got error code ${response.statusCode}");
@@ -68,7 +82,8 @@ class ClientDataSource {
   }
 
   Future<bool> deleteClient(int id) async {
-    final response = await http.delete(
+    //final response = await http.delete
+    final response = await httpClient.delete(
       Uri.parse("https://retoolapi.dev/$apiKey/clientData/$id"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -102,5 +117,4 @@ class ClientDataSource {
   //     return Future.error('Error code ${response.statusCode}');
   //   }
   // }
-  
 }

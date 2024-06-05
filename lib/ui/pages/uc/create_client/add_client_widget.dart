@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import 'package:get/get.dart';
 import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
 
+=======
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:get/get.dart';
+import 'package:proyecto_en_clase201410/ui/controllers/uc_controller.dart';
+import 'package:http/http.dart' as http;
+>>>>>>> origin/dev
 import '../../../../domain/models/client.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,7 +18,11 @@ import 'add_client_model.dart';
 export 'add_client_model.dart';
 
 class AddClientWidget extends StatefulWidget {
+<<<<<<< HEAD
   const AddClientWidget({super.key});
+=======
+  const AddClientWidget({Key? key}) : super(key: key);
+>>>>>>> origin/dev
 
   @override
   State<AddClientWidget> createState() => _AddClientWidgetState();
@@ -20,13 +31,64 @@ class AddClientWidget extends StatefulWidget {
 class _AddClientWidgetState extends State<AddClientWidget> {
   late AddClientModel _model;
   final controllerName = TextEditingController();
+<<<<<<< HEAD
   final scaffoldKey = GlobalKey<ScaffoldState>();
+=======
+  final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
+
+  bool containsOnlyDigits(String value) {
+    return int.tryParse(value) != null;
+  }
+>>>>>>> origin/dev
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => AddClientModel());
     _model.textFieldFocusNode2 ??= FocusNode();
+<<<<<<< HEAD
+=======
+    checkConnectivity();
+  }
+
+  Future<bool> checkConnectivity() async {
+    try {
+      var response = await http.get(
+        Uri.parse("https://ifconfig.me/ip"),
+      );
+
+      // Si el código de estado de la respuesta es 200, la solicitud fue exitosa
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Si hay algún otro código de estado, no tratamos explícitamente ese caso
+        // Aquí simplemente devolvemos false
+        return false;
+      }
+    } catch (e) {
+      showNoInternetDialog();
+      return false;
+    }
+  }
+
+  void showNoInternetDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('No Internet Connection'),
+        content: Text('Please check your internet connection and try again.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Get.back();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+>>>>>>> origin/dev
   }
 
   @override
@@ -231,6 +293,7 @@ class _AddClientWidgetState extends State<AddClientWidget> {
                                           .asValidator(context),
                                     ),
                                   ),
+<<<<<<< HEAD
                                   FFButtonWidget(
                                     onPressed: () async {
                                       await ucController.addClient(Client(
@@ -264,6 +327,68 @@ class _AddClientWidgetState extends State<AddClientWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
+=======
+                                  Builder(
+                                    builder: (BuildContext context) {
+                                      return FFButtonWidget(
+                                        onPressed: () async {
+                                          // Validar el nombre del cliente antes de añadirlo
+                                          String name =
+                                              controllerName.text.trim();
+                                          if (name.isEmpty) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  content:
+                                                      Text('Name is required')),
+                                            );
+                                            return;
+                                          }
+                                          // Validar que el nombre no sea un número utilizando la función containsOnlyDigits
+                                          if (containsOnlyDigits(name)) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  content: Text(
+                                                      'Name cannot be a number')),
+                                            );
+                                            return;
+                                          }
+                                          // Añadir el cliente si pasa la validación
+                                          await ucController
+                                              .addClient(Client(name: name));
+                                          Get.offNamed('/coordinador');
+                                        },
+                                        text: 'Save',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 40.0,
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      );
+                                    },
+>>>>>>> origin/dev
                                   ),
                                 ],
                               ),

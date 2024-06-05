@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 2024/06/02-22:51:07.832 35a4 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.3ff4fc73\flutter_tools_chrome_device.43d364ec\Default\Session Storage/MANIFEST-000001
 2024/06/02-22:51:07.834 35a4 Recovering log #3
 2024/06/02-22:51:07.847 35a4 Reusing old log C:\Users\graba\AppData\Local\Temp\flutter_tools.3ff4fc73\flutter_tools_chrome_device.43d364ec\Default\Session Storage/000003.log 
+=======
+2024/06/05-09:25:59.831 16b4 Reusing MANIFEST C:\Users\graba\AppData\Local\Temp\flutter_tools.4f49e39d\flutter_tools_chrome_device.fbd7aac5\Default\Session Storage/MANIFEST-000001
+2024/06/05-09:25:59.863 16b4 Recovering log #3
+2024/06/05-09:25:59.868 16b4 Reusing old log C:\Users\graba\AppData\Local\Temp\flutter_tools.4f49e39d\flutter_tools_chrome_device.fbd7aac5\Default\Session Storage/000003.log 
+>>>>>>> origin/dev
