@@ -1,7 +1,5 @@
-# ProyectoEnClase201410
+# ProyectoEnClase202410
 
-A new Flutter project.
+Project for Mobile app development.
 
-## Getting Started
-
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+UC and US Management app. Works offline
